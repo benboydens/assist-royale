@@ -1,14 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+// import React from 'react';
 import './App.css';
+import initialize_cards from './api/fetch';
+import { useEffect, useState } from 'react';
+import { Card } from './models/card';
 
-function App() {
+function Deck() {
+
+  const [cards, setCards] = useState(Array<Card>)
+  useEffect(() => {
+    async function getCards() {
+      let all_cards = await initialize_cards();
+      setCards(all_cards);
+    }
+    getCards();
+  })
+
+  const listCards = cards.map(c => <div>{c.name}<img src={c.img} alt={c.name}/></div>);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Yo dit is een deck bro
         </p>
         <a
           className="App-link"
@@ -18,9 +31,23 @@ function App() {
         >
           Learn React
         </a>
+
+        <div>
+          <div>Unknown<img src="/unknown.png" alt="Unknown"/></div>
+          {listCards}
+        </div>
       </header>
     </div>
   );
 }
 
-export default App;
+// function Cardx() {
+//   return (
+//     <div>
+//       <div>Title</div>
+//       <img src="" alt="FUCKYOUIKZETWATIKwiLHIER" />
+//     </div>
+//   );
+// }
+
+export default Deck;
