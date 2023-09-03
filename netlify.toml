@@ -3,3 +3,4 @@
   to = "https://api.clashroyale.com/v1/:splat"
   status = 200
   force = true
+  signed = "REACT_APP_API_TOKEN"
