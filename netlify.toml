@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/v1/*"
+  to = "https://api.clashroyale.com/v1/:splat"
+  status = 200
+  force = true
+  [redirects.headers]
+    Authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijk1YTUxNGQxLTE1NzItNGU0NS1hNGM3LTVkODYwODFmZWY3MiIsImlhdCI6MTY4NjE2ODE3Nywic3ViIjoiZGV2ZWxvcGVyLzU2NGEyZDE3LWNjZDgtOWU5Zi1mY2Y4LTBlN2QzY2MzM2YxYSIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIxNzguMTE5LjEwMC4xMzIiXSwidHlwZSI6ImNsaWVudCJ9XX0._QQ9tIfal75H4YTAtWsNWmrrjSSsTby8RJZ0EejDq_BrD7r7u_Z0tfHAXCu1lIR0Zu2_9ip5xCpxBB697PyPTQ"
