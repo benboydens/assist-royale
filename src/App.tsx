@@ -17,9 +17,10 @@ function App() {
   }
 
   function resetDeck() {
-    console.log("Reset")
-    setDeck(new Deck());
-    setCards(deck.getCards());
+    const d = new Deck();
+
+    setDeck(d);
+    setCards(d.getCards());
   }
   
   let deckList = cards.map((c, i) => <div className={i >= 4 && c.id !== 0 ? "card-deck-darken" : "card-deck"} key={c.id + '-' + i }><PickerCard card={c}/></div>)
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="app">
     <header className="app-header container pt-3">
-      <button className="btn btn-dark float-end" onClick={() => resetDeck()}>Reset</button>
+      <button className="btn btn-dark float-end" onClick={resetDeck}>Reset</button>
       <h3>Deck</h3>
       <div className="deck py-3">
         {deckList}

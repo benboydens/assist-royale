@@ -1,8 +1,8 @@
-import axios, { AxiosHeaders, AxiosRequestConfig } from "axios";
+import axios from "axios";
 import { Card } from "../models/card";
 
 const url: string = 'https://royaleapi.github.io/cr-api-data/json/cards.json';
-const image_url: string = '/v1/cards';
+// const image_url: string = '/v1/cards';
 
 interface JSON_Card {
     id: number,
@@ -33,13 +33,7 @@ export default async function initialize_cards(): Promise<Array<Card>> {
 
     // Fetch the images of all the cards and map them with the ID's
     try {
-        console.log(`API token ${process.env.REACT_APP_API_TOKEN}`);
-        const config = {
-            method: "GET",
-            headers: new AxiosHeaders().set('Authorization', `Bearer ${process.env.REACT_APP_API_TOKEN}`)
-        } as AxiosRequestConfig
-
-        const { data } = await axios.get(image_url, config);
+        const { data } = await axios.get('./cards.json');
         for (let item of data.items) {
             let card: Item = item;
             id_to_img[card.id] = card.iconUrls.medium;

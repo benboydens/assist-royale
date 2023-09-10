@@ -5,6 +5,8 @@ export class Card
     public cost: number = 0;
     public next: Card | undefined = undefined;
     public img: string = "/unknown.png";
+    public rarity: string = "unknown";
+    public type: string = "unknown";
 
     public setName(name: string) {
         this.name = name;
