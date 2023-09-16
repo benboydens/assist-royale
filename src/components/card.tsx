@@ -1,14 +1,14 @@
 import { Card } from '../models/card';
 
-export default function PickerCard({ card }: { card: Card }) {
+export default function PickerCard({ card, noClick = false }: { card: Card, noClick?: boolean }) {
 	return (
     <div className='position-relative'>
-		  <img className="card-img" src={card.img} alt={card.name} />
+		  <img className="card-img" src={card.img} alt={card.name} style={{ 'cursor': (noClick ? 'unset' : 'pointer') }} />
       {
-        card.id !== 0 ? (
+        (card.id !== 0 && !noClick) ? (
           <>
-            <img className="elixer-icon" src="elixer.png" alt="" />
-            <div className='elixer-cost'>{card.cost}</div>
+            <img className="elixir-icon" src="elixir.png" alt="" />
+            <div className='elixir-cost'>{card.cost}</div>
           </>
         ) : null
       }

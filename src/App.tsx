@@ -4,11 +4,11 @@ import Cycle from './components/cycle';
 
 
 function App() {
-	return (
-		<div className="app">
-				<Cycle />
-		</div>
-	);
+  return (
+    <div className="app">
+      <Cycle />
+    </div>
+  );
 }
 
 export default App;

@@ -23,15 +23,6 @@ body {
   justify-content: center;
 }
 
-.app-header {
-  text-align: center;
-}
-
-.card-qp {
-  max-width: 90px;
-  cursor: pointer;
-}
-
 #rarity-buttons label {
   margin: 0.25rem;
 }
@@ -70,7 +61,7 @@ body {
   color: black;
 }
 
-.elixer-icon {
+.elixir-icon {
   position: absolute;
   top: -0.5rem;
   left: -0.5rem;
@@ -78,7 +69,7 @@ body {
   user-select: none;
 }
 
-.elixer-cost {
+.elixir-cost {
   position: absolute;
   top: -0.4rem;
   left: 0px;
@@ -86,4 +77,16 @@ body {
   text-shadow: 0 0 3px black, 0 0 5px black;
   font-weight: bold;
   user-select: none;
+}
+
+.champion-spot .card-img {
+  max-width: 90px;
+}
+
+.champion-spot {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }

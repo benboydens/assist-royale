@@ -1,9 +1,12 @@
 import { Card } from "./card";
 
 export class Deck {
-    public first: Card;
+    private first: Card;
+    private length: number = 7;
+    private champion: Card | null = null;
 
-    constructor() {
+    constructor()
+    {
         // create new deck with empty cards
         this.first = new Card();
         for (let i = 0; i < 7; i++) {
@@ -11,7 +14,8 @@ export class Deck {
         }
     }
 
-    private addCard(card: Card) {
+    private addCard(card: Card)
+    {
         let current: Card = this.first;
         while (current.next !== undefined) {
             current = current.next;
@@ -20,7 +24,8 @@ export class Deck {
         current.next = card;
     }
 
-    private removeFrom(index: number): Card | undefined {
+    private removeFrom(index: number): Card | undefined
+    {
         let curr: Card | undefined = this.first;
         let prev: Card | undefined;
 
@@ -44,7 +49,8 @@ export class Deck {
         return curr;
     }
 
-    public print() {
+    public print()
+    {
         let index = 0;
         let current: Card = this.first;
         while (current.next !== undefined) {
@@ -59,7 +65,8 @@ export class Deck {
         console.log("\x1b[31m", `Card: ${current.name} - cost: ${current.cost} elixer - index: ${index}`);
     }
 
-    private cardInDeck(card: Card): boolean {
+    private cardInDeck(card: Card): boolean
+    {
         let current: Card = this.first;
         while (current.next !== undefined) {
             if (current.id === card.id) {
@@ -71,7 +78,8 @@ export class Deck {
         return current.id === card.id;
     }
 
-    private firstUnknownIndex(): number {
+    private firstUnknownIndex(): number
+    {
         let index: number = 0;
         let current: Card | undefined = this.first;
         while (index < 4 && current) {
@@ -85,7 +93,14 @@ export class Deck {
         return -1;
     }
 
-    public playCard(card: Card) {
+    public playCard(card: Card)
+    {
+        // We can only play a champion once
+        if (card.isChampion() && this.champion !== null) {
+            return; 
+        } 
+
+
         // first check if card is in hand (exists in first 4 cards)
         let index: number = 0;
         let current: Card | undefined = this.first;
@@ -102,12 +117,22 @@ export class Deck {
 
                 removed.next = undefined;
 
-                this.addCard(removed);
+                if (!removed.isChampion()) {
+                    this.addCard(removed);
+                } else {
+                    this.champion = removed;
+                }
             } else {
                 // do nothing since card is not in hand
                 console.log('Card not in hand');
             }
         } else {
+
+            // We can only play a champion once
+            if (card.isChampion() && this.deckHasChampion()) {
+                return;
+            } 
+
             // replace unknown card with played card and move to back
             let unknown_index = this.firstUnknownIndex();
             if (unknown_index < 0 || unknown_index > 3) return;
@@ -117,15 +142,22 @@ export class Deck {
 
             removed.id = card.id;
             removed.cost = card.cost;
-            removed.name = card.name
+            removed.name = card.name;
+            removed.rarity = card.rarity;
+            removed.type = card.type;
             removed.img = card.img;
             removed.next = undefined;
 
-            this.addCard(removed);
+            if (!removed.isChampion()) {
+                this.addCard(removed);
+            } else {
+                this.champion = removed;
+            }
         }
     }
 
-    public getCards(): Array<Card> {
+    public getCards(): Array<Card>
+    {
         let cards: Array<Card> = []
         let current: Card = this.first;
 
@@ -136,5 +168,39 @@ export class Deck {
         cards.push(current);
 
         return cards;
+    }
+
+    public getChampion(): Card | null
+    {
+        return this.champion;
+    }
+
+    public championGone()
+    {
+        if (this.champion !== null) {
+            this.addCard(this.champion);
+        }
+        this.champion = null;
+    }
+
+    private deckHasChampion()
+    {
+        if (this.champion !== null) {
+            return true; 
+        } 
+
+        let current: Card = this.first;
+        while (current.next !== undefined) {
+            if (current.isChampion()) {
+                return true;
+            }
+            current = current.next;
+        }
+
+        if (current.isChampion()) {
+            return true;
+        }
+
+        return false;
     }
 }
