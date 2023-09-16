@@ -55,6 +55,7 @@ export default async function initialize_cards(): Promise<Array<Card>> {
             card.name = json_card.name;
             card.cost = json_card.elixir;
             card.img  = id_to_img[json_card.id];
+            card.rarity = json_card.rarity;
 
             cards.push(card);
         }

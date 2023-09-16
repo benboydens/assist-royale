@@ -86,7 +86,7 @@ export class Deck {
     }
 
     public playCard(card: Card) {
-        // first check if card exists in first 4 cards
+        // first check if card is in hand (exists in first 4 cards)
         let index: number = 0;
         let current: Card | undefined = this.first;
         while (index < 8 && current && current.id !== card.id) {
@@ -103,6 +103,9 @@ export class Deck {
                 removed.next = undefined;
 
                 this.addCard(removed);
+            } else {
+                // do nothing since card is not in hand
+                console.log('Card not in hand');
             }
         } else {
             // replace unknown card with played card and move to back
