@@ -28,12 +28,12 @@ export default function CardList({ onCardClick }: { onCardClick: any }) {
     <>
       <h3>Cards</h3>
       <div className="row pt-3 pb-5 g-3">
-        <div className='col-12 col-sm-6'>
+        <div className='col-12 col-lg-6'>
           <input type="text" className="form-control me-3" placeholder="Search by name..." aria-label="name-search" aria-describedby="basic-addon1"
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div id="rarity-buttons" className='col-12 col-sm-6'>
+        <div id="rarity-buttons" className='col-12 col-lg-6'>
           <input type="radio" className="btn-check" name="rarity-options" id="common" onClick={() => setRarity('Common')} />
           <label className="btn btn-secondary" htmlFor="common">Common</label>
 
@@ -57,7 +57,7 @@ export default function CardList({ onCardClick }: { onCardClick: any }) {
       <div className="row g-0">
         {
           cards
-            .filter(c => c.img)
+            .filter(c => !c.isEventCard())
             .filter(c => c.rarity.includes(rarity))
             .filter(c => c.name.toLowerCase().includes(name))
             .map((card) => (
