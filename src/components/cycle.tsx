@@ -22,6 +22,7 @@ export default function Cycle() {
 
     setDeck(d);
     setCards(d.getCards());
+    setChampion(null);
   }
 
   function championGone() {

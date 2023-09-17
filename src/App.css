@@ -63,20 +63,27 @@ body {
 
 .elixir-icon {
   position: absolute;
-  top: -0.5rem;
-  left: -0.5rem;
-  max-width: 25px;
+  top: -0.1rem;
+  left: -0.1rem;
+  max-width: 26px;
   user-select: none;
+}
+
+
+@font-face {
+  font-family: 'YouBlockhead';
+  src: url(../public/fonts/you_blockhead.ttf);
 }
 
 .elixir-cost {
   position: absolute;
-  top: -0.4rem;
-  left: 0px;
+  top: 3px;
+  left: 6px;
   color: white;
   text-shadow: 0 0 3px black, 0 0 5px black;
-  font-weight: bold;
   user-select: none;
+  font-size: smaller;
+  font-family: 'YouBlockhead';
 }
 
 .champion-spot .card-img {

@@ -13,34 +13,11 @@ interface JSON_Card {
     elixir: number,
     type: string,
     rarity: string,
-    arena: number
-}
-
-interface icon_URL {
-    medium: string
-}
-
-interface Item {
-    id: number,
-    name: string,
-    maxLevel: number,
-    iconUrls: icon_URL,
+    arena: number 
 }
 
 
 export default async function initialize_cards(): Promise<Array<Card>> {
-    let id_to_img: any = {};
-
-    // Fetch the images of all the cards and map them with the ID's
-    try {
-        const { data } = await axios.get('./cards.json');
-        for (let item of data.items) {
-            let card: Item = item;
-            id_to_img[card.id] = card.iconUrls.medium;
-        }
-    } catch (error) {
-        console.error(error);
-    }
 
     // fetch all info about the cards and create Card objects with them.
     try {
@@ -54,7 +31,7 @@ export default async function initialize_cards(): Promise<Array<Card>> {
             card.id   = json_card.id;
             card.name = json_card.name;
             card.cost = json_card.elixir;
-            card.img  = id_to_img[json_card.id];
+            card.img  = `https://cdn.royaleapi.com/static/img/cards-150/${json_card.key}.png`;
             card.rarity = json_card.rarity;
 
             cards.push(card);
