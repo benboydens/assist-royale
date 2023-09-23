@@ -33,6 +33,7 @@ export default async function initialize_cards(): Promise<Array<Card>> {
             card.cost = json_card.elixir;
             card.img  = `https://cdn.royaleapi.com/static/img/cards-150/${json_card.key}.png`;
             card.rarity = json_card.rarity;
+            card.type = json_card.type;
 
             cards.push(card);
         }

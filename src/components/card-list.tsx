@@ -7,6 +7,7 @@ import initialize_cards from '../api/fetch';
 export default function CardList({ onCardClick }: { onCardClick: any }) {
   const [cards, setCards] = useState<Array<Card>>([])
   const [rarity, setRarity] = useState<string>("")
+  const [type, setType] = useState<string>("")
   const [name, setName] = useState<string>("")
 
 
@@ -27,30 +28,27 @@ export default function CardList({ onCardClick }: { onCardClick: any }) {
   return (
     <>
       <h3>Cards</h3>
-      <div className="row pt-3 pb-5 g-3">
-        <div className='col-12 col-lg-6'>
+      <div className='row g-2 mb-3'>
+        <div id="rarity-buttons" className='col-12 col-lg-6'>
+          <button type="button" className="btn me-1" id="common" onClick={() => setRarity('Common')}>Common</button>
+          <button type="button" className="btn me-1" id="rare" onClick={() => setRarity('Rare')}>Rare</button>
+          <button type="button" className="btn me-1" id="epic" onClick={() => setRarity('Epic')}>Epic</button>
+          <button type="button" className="btn me-1" id="legendary" onClick={() => setRarity('Legendary')}>Legendary</button>
+          <button type="button" className="btn me-1" id="champion" onClick={() => setRarity('Champion')}>Champion</button>
+          <button type="button" className="btn btn-secondary" id="rarity-off" onClick={() => setRarity('')}>All</button>
+        </div>
+
+        <div id="type-buttons" className='col-12 col-lg-6 text-end'>
+          <button type="button" className="btn btn-dark me-1" id="troop" onClick={() => setType('Troop')}>Troop</button>
+          <button type="button" className="btn btn-dark me-1" id="building" onClick={() => setType('Building')}>Building</button>
+          <button type="button" className="btn btn-dark me-1" id="spell" onClick={() => setType('Spell')}>Spell</button>
+          <button type="button" className="btn btn-secondary" id="type-off" onClick={() => setType('')}>All</button>
+        </div>
+        
+        <div className="col-12">
           <input type="text" className="form-control me-3" placeholder="Search by name..." aria-label="name-search" aria-describedby="basic-addon1"
             onChange={(e) => setName(e.target.value)}
           />
-        </div>
-        <div id="rarity-buttons" className='col-12 col-lg-6'>
-          <input type="radio" className="btn-check" name="rarity-options" id="common" onClick={() => setRarity('Common')} />
-          <label className="btn btn-secondary" htmlFor="common">Common</label>
-
-          <input type="radio" className="btn-check" name="rarity-options" id="rare" onClick={() => setRarity('Rare')} />
-          <label className="btn btn-secondary" htmlFor="rare">Rare</label>
-
-          <input type="radio" className="btn-check" name="rarity-options" id="epic" onClick={() => setRarity('Epic')} />
-          <label className="btn btn-secondary" htmlFor="epic">Epic</label>
-
-          <input type="radio" className="btn-check" name="rarity-options" id="legendary" onClick={() => setRarity('Legendary')} />
-          <label className="btn btn-secondary" htmlFor="legendary">Legendary</label>
-
-          <input type="radio" className="btn-check" name="rarity-options" id="champion" onClick={() => setRarity('Champion')} />
-          <label className="btn btn-secondary" htmlFor="champion">Champion</label>
-
-          <input type="radio" className="btn-check" name="rarity-options" id="rarity-off" onClick={() => setRarity('')} />
-          <label className="btn btn-secondary" htmlFor="rarity-off">All</label>
         </div>
       </div>
 
@@ -59,6 +57,7 @@ export default function CardList({ onCardClick }: { onCardClick: any }) {
           cards
             .filter(c => !c.isEventCard())
             .filter(c => c.rarity.includes(rarity))
+            .filter(c => c.type.includes(type))
             .filter(c => c.name.toLowerCase().includes(name))
             .map((card) => (
               <div className="col-2 col-md-1" onClick={() => updateCards(card)} key={card.id} title={card.name}>

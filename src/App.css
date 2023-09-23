@@ -21,28 +21,32 @@ body {
   width:100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 3rem;
 }
 
 #rarity-buttons label {
   margin: 0.25rem;
 }
 
-#common + label {
+#common {
   background: dodgerblue;
+  color: white;
   border: none;
 }
 
-#rare + label {
+#rare {
   background: chocolate;
+  color: white;
   border: none;
 }
 
-#epic + label {
+#epic {
   background: darkviolet;
+  color: white;
   border: none;
 }
 
-#legendary + label {
+#legendary {
   background: #d9a7c7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -52,7 +56,7 @@ body {
 }
 
 
-#champion + label {
+#champion {
   background: #CAC531;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #e2ea6d, #e9e20e);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #e2ea6d, #e9e20e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
@@ -62,9 +66,6 @@ body {
 }
 
 .elixir-icon {
-  position: absolute;
-  top: -0.1rem;
-  left: -0.1rem;
   max-width: 26px;
   user-select: none;
 }
@@ -77,13 +78,14 @@ body {
 
 .elixir-cost {
   position: absolute;
-  top: 0.2rem;
-  left: 0.4rem;
+  top: 15%;
+  width: 26px;
   color: white;
   text-shadow: 0 0 3px black, 0 0 5px black;
   user-select: none;
   font-size: smaller;
   font-family: 'YouBlockhead';
+  text-align: center;
 }
 
 .champion-spot .card-img {
@@ -96,4 +98,20 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+}
+
+.elixir {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.champ-btn {
+  position: absolute;
+  bottom: -3rem;
+  width: 100px;
+}
+
+#type-buttons label {
+  margin: 0.25rem;
 }

@@ -6,10 +6,10 @@ export default function PickerCard({ card, noClick = false }: { card: Card, noCl
 		  <img className='card-img' src={card.img} alt={card.name} style={{ 'cursor': (noClick ? 'unset' : 'pointer') }} />
       {
         (card.id !== 0 && !noClick) ? (
-          <>
+          <div className='elixir'>
             <img className='elixir-icon' src='elixir.png' alt='' />
             <div className='elixir-cost'>{card.cost}</div>
-          </>
+          </div>
         ) : null
       }
     </div>
