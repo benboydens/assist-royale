@@ -177,10 +177,17 @@ export class Deck {
 
     public championGone()
     {
-        if (this.champion !== null) {
-            this.addCard(this.champion);
+        let last: Card | undefined = this.removeFrom(6);
+
+        if (last !== undefined) {
+            if (this.champion !== null) {
+                this.addCard(this.champion);
+            }
+            this.addCard(last);
+            this.champion = null;
+        } else {
+            console.error('ERROR with champion, couldn\'t switch last card');
         }
-        this.champion = null;
     }
 
     private deckHasChampion()
